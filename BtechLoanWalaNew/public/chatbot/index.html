@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>B-Tech Loan Wala</title>
+<meta name="description" content="Guided loan assistant">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230b3d78'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-size='26' font-family='Arial' font-weight='700' fill='white'%3EBL%3C/text%3E%3C/svg%3E">
+<style>
+:root{--b:#0b3d78;--b2:#1763ad;--p:#eaf3ff;--bg:#f5f8fc;--ink:#102841;--muted:#607387;--line:#d7e2ec;--red:#b53d3d;--gold:#fff8e8;--shadow:0 28px 80px #082d5938}*{box-sizing:border-box}html{font-size:16px}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 10% 8%,#dcecff,transparent 30%),#eef4fa;color:var(--ink);font:16px/1.45 Inter,"Segoe UI",Arial,sans-serif}button,input{font:inherit}.shell{width:min(432px,100%);height:min(790px,calc(100vh - 32px));min-height:630px;display:grid;grid-template-rows:auto 1fr auto;border:1px solid #0b3d781f;border-radius:22px;overflow:hidden;background:#fff;box-shadow:var(--shadow)}.top{display:flex;align-items:center;gap:11px;padding:13px 15px;color:#fff;background:linear-gradient(135deg,#082d59,var(--b2))}.logo{width:44px;height:44px;object-fit:contain;border-radius:11px;padding:3px;background:#fff}.brand strong{display:block}.brand span{font-size:.78rem;color:#d6e8fa}.tools{margin-left:auto;display:flex;gap:6px}.ib{width:34px;height:34px;border:1px solid #ffffff30;border-radius:10px;background:#ffffff16;color:#fff;cursor:pointer}.view{overflow:auto;background:#f7f9fc}.page{display:none;min-height:100%;padding:17px}.page.active{display:block;animation:in .18s ease}@keyframes in{from{opacity:0;transform:translateX(7px)}}.bubble{width:84%;padding:14px 15px;border-radius:16px 16px 16px 5px;background:linear-gradient(135deg,#eef1f5,#fff)}.bubble h1{margin:0 0 4px;font-size:1.05rem}.bubble p{margin:0;color:#40566b;font-size:.88rem}.eyebrow{margin:17px 2px 9px;color:var(--muted);font-size:.76rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.menu{display:grid;grid-template-columns:1fr 1fr;gap:8px}.card{display:grid;grid-template-columns:32px 1fr;align-items:center;gap:8px;min-height:64px;padding:10px;border:1px solid var(--line);border-radius:12px;background:#fff;text-align:left;color:var(--ink);cursor:pointer}.card:hover{border-color:#84b2e1;background:#f4f8fe}.card .ic{display:grid;place-items:center;width:31px;height:31px;border-radius:9px;background:var(--p);color:var(--b);font-weight:850}.card b{display:block;font-size:.86rem}.card small{display:block;margin-top:2px;color:var(--muted);font-size:.73rem;line-height:1.25}.card.rep{grid-column:1/-1;border-color:#e1b35a;background:linear-gradient(90deg,var(--gold),#fff)}.safe{display:flex;gap:7px;margin-top:13px;padding:10px 11px;border-radius:11px;background:var(--p);color:#405d78;font-size:.75rem}.head{display:grid;grid-template-columns:36px 1fr;gap:10px;margin-bottom:14px}.back{width:36px;height:36px;border:0;border-radius:10px;background:var(--p);color:var(--b);font-size:1.3rem;cursor:pointer}.head h2{margin:1px 0 2px;font-size:1.16rem}.head p{margin:0;color:var(--muted);font-size:.8rem}.user{width:max-content;max-width:84%;margin:0 0 13px auto;padding:10px 13px;border-radius:13px 13px 4px 13px;background:#dcecff;color:#082d59;font-size:.84rem;font-weight:700}.bot{display:flex;gap:9px;margin-bottom:13px}.av{display:grid;place-items:center;flex:0 0 32px;height:32px;border-radius:50%;background:var(--p);color:var(--b);font-size:.74rem;font-weight:850}.bot p{margin:0;padding:11px 12px;border-radius:13px 13px 13px 4px;background:#eef1f5;color:#30475d;font-size:.83rem}.options{display:grid;gap:8px}.opt{width:100%;display:grid;grid-template-columns:32px 1fr 18px;align-items:center;gap:9px;min-height:54px;padding:9px 11px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);text-align:left;cursor:pointer}.opt:hover,.choice:hover,.choice.sel{border-color:#2477ca;background:var(--p)}.oi{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:var(--p);color:var(--b);font-weight:850;font-size:.8rem}.opt b{font-size:.86rem}.opt small{display:block;color:var(--muted);font-size:.72rem}.arr{color:#2477ca}.progress{height:5px;margin-bottom:15px;border-radius:5px;background:#dfe8f1;overflow:hidden}.progress span{display:block;height:100%;background:linear-gradient(90deg,#2477ca,var(--b));transition:.2s}.question{margin:4px 0 12px;font-size:1rem}.choice{width:100%;display:flex;justify-content:space-between;align-items:center;min-height:49px;padding:10px 13px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);font-size:.88rem;font-weight:650;text-align:left;cursor:pointer}.field{display:grid;gap:6px;margin-bottom:12px}.field label{font-size:.82rem;font-weight:800}.field input{width:100%;min-height:46px;padding:10px 12px;border:1px solid var(--line);border-radius:11px;outline:none}.field input:focus{border-color:#2477ca;box-shadow:0 0 0 3px #2477ca1f}.custom{display:none;margin-top:9px}.custom.show{display:block}.btn{min-height:44px;padding:10px 13px;border:0;border-radius:11px;font-weight:800;font-size:.86rem;cursor:pointer}.primary{background:linear-gradient(135deg,var(--b),var(--b2));color:#fff}.wide{width:100%}.error{min-height:18px;margin:4px 0;color:var(--red);font-size:.76rem}.info{padding:14px;border:1px solid var(--line);border-radius:14px;background:#fff}.info+.info{margin-top:9px}.info h3{margin:0 0 7px;font-size:.94rem}.info p,.info li{color:var(--muted);font-size:.82rem}.info p{margin:0}.info ul{margin:0;padding-left:18px}.info li+li{margin-top:5px}.tip{margin-bottom:11px;padding:10px 11px;border-radius:11px;background:var(--p);color:#355b7d;font-size:.78rem}.summary{padding:15px;border:1px solid #bfd8f0;border-radius:15px;background:#edf6ff}.summary h3{margin:0 0 9px}.row{display:grid;grid-template-columns:42% 58%;gap:6px;padding:7px 0;border-bottom:1px solid #2477ca24;font-size:.8rem}.row:last-child{border:0}.row span{color:var(--muted)}.row b{overflow-wrap:anywhere}.fine{margin:11px 0 0;color:var(--muted);font-size:.73rem}.big{display:block;margin:3px 0 12px;color:var(--b);font-size:1.55rem;font-weight:850}.metrics{display:grid;grid-template-columns:1fr 1fr;gap:8px}.metric{padding:10px;border-radius:10px;background:#fff}.metric small{display:block;color:var(--muted);font-size:.7rem}.metric b{font-size:.82rem}.method{display:flex;align-items:center;gap:10px;padding:13px;border:1px solid #2477ca;border-radius:12px;background:var(--p);font-weight:800}.method input{width:18px;height:18px}.consent{display:flex;gap:8px;margin:11px 0;color:var(--muted);font-size:.76rem}.foot{padding:9px 13px;border-top:1px solid var(--line);background:#fff}.foot button{width:100%;background:var(--gold);color:#785315;border:1px solid #e1b35a}.launcher{display:none;width:62px;height:62px;border:0;border-radius:50%;background:linear-gradient(135deg,#082d59,var(--b2));color:#fff;box-shadow:var(--shadow);font-weight:850}.launcher.show{display:block}@media(max-width:470px){body{padding:0}.shell{height:100vh;min-height:100vh;border:0;border-radius:0}.page{padding:15px}.card small{display:none}}</style>
+</head>
+<body>
+<main class="shell" id="shell">
+<header class="top">
+<img class="logo" src="BTech_logo.png" alt="B-Tech Loan Wala logo">
+<div class="brand">
+<strong>B-Tech Loan Wala</strong>
+<span>Loan assistance</span>
+</div>
+<div class="tools">
+<button class="ib" title="Secure">🔒</button>
+<button class="ib" id="reset" title="Restart">↻</button>
+<button class="ib" id="close" title="Close">×</button>
+</div>
+</header>
+<div class="view" id="view">
+<section class="page active" id="home">
+<div class="bubble">
+<h1>Hi! 👋</h1>
+<p>Welcome to B-Tech Loan Wala.<br>How can I help you today?</p>
+</div>
+<div class="eyebrow">Choose an option</div>
+<div class="menu">
+<button class="card" data-a="find">
+<span class="ic">₹</span>
+<span>
+<b>Find the right loan</b>
+<small>Complete guided journey</small>
+</span>
+</button>
+<button class="card" data-a="elig">
+<span class="ic">✓</span>
+<span>
+<b>Check eligibility</b>
+<small>Quick profile check</small>
+</span>
+</button>
+<button class="card" data-a="docs">
+<span class="ic">▤</span>
+<span>
+<b>Documents required</b>
+<small>Loan-wise checklist</small>
+</span>
+</button>
+<button class="card" data-a="emi">
+<span class="ic">∑</span>
+<span>
+<b>Calculate EMI</b>
+<small>Instant estimate</small>
+</span>
+</button>
+<button class="card" data-a="existing">
+<span class="ic">↻</span>
+<span>
+<b>Existing loan help</b>
+<small>Transfer, top-up or dues</small>
+</span>
+</button>
+<button class="card" data-a="other">
+<span class="ic">?</span>
+<span>
+<b>Ask another question</b>
+<small>Type only if needed</small>
+</span>
+</button>
+<button class="card rep" data-a="expert">
+<span class="ic">●</span>
+<span>
+<b>Talk to a representative</b>
+<small>Send your query through WhatsApp</small>
+</span>
+</button>
+</div>
+<div class="safe">
+<b>Safe chat:</b>
+<span>Never share OTP, PIN, CVV, passwords, PAN or Aadhaar numbers.</span>
+</div>
+</section>
+<section class="page" id="loan-select">
+<div class="head">
+<button class="back" data-home>‹</button>
+<div>
+<h2 id="selectTitle">Select a loan</h2>
+<p id="selectHelp">
+</p>
+</div>
+</div>
+<div class="user" id="selectUser">
+</div>
+<div class="bot">
+<span class="av">BL</span>
+<p>Please select a loan category.</p>
+</div>
+<div class="options" id="loanList">
+</div>
+</section>
+<section class="page" id="wizard">
+<div class="head">
+<button class="back" id="wBack">‹</button>
+<div>
+<h2 id="wTitle">Loan details</h2>
+<p id="stepLabel">Step 1</p>
+</div>
+</div>
+<div class="user" id="loanBubble">
+</div>
+<div class="progress">
+<span id="bar">
+</span>
+</div>
+<h3 class="question" id="question">
+</h3>
+<div id="control">
+</div>
+<div class="error" id="wError">
+</div>
+<button class="btn primary wide" id="next">Continue</button>
+</section>
+<section class="page" id="documents">
+<div class="head">
+<button class="back" data-home>‹</button>
+<div>
+<h2>Documents required</h2>
+<p>Select a loan for its checklist.</p>
+</div>
+</div>
+<div class="options" id="docLoans">
+</div>
+</section>
+<section class="page" id="doc-detail">
+<div class="head">
+<button class="back" id="docBack">‹</button>
+<div>
+<h2 id="docTitle">
+</h2>
+<p>Typical document checklist</p>
+</div>
+</div>
+<div class="tip">The lender may request additional documents after reviewing the profile.</div>
+<div class="info">
+<ul id="docList">
+</ul>
+</div>
+<div class="safe">
+<b>Important:</b>
+<span>Share documents only through an authorised secure channel.</span>
+</div>
+<button class="btn primary wide" style="margin-top:12px" id="docNext">Continue</button>
+</section>
+<section class="page" id="emi-loan">
+<div class="head">
+<button class="back" data-home>‹</button>
+<div>
+<h2>Calculate EMI</h2>
+<p>First select the loan type.</p>
+</div>
+</div>
+<div class="options" id="emiLoans">
+</div>
+</section>
+<section class="page" id="emi">
+<div class="head">
+<button class="back" data-go="emi-loan">‹</button>
+<div>
+<h2>EMI calculator</h2>
+<p id="emiName">
+</p>
+</div>
+</div>
+<div class="field">
+<label>Loan amount (₹)</label>
+<input id="emiAmount" type="number" min="10000" value="500000">
+</div>
+<div class="field">
+<label>Annual interest rate (%)</label>
+<input id="emiRate" type="number" min="1" max="40" step=".1" value="10">
+</div>
+<div class="field">
+<label>Loan tenure (years)</label>
+<input id="emiYears" type="number" min="1" max="30" value="5">
+</div>
+<div class="error" id="emiError">
+</div>
+<button class="btn primary wide" id="calc">Calculate EMI</button>
+<div id="emiOut" style="margin-top:11px">
+</div>
+</section>
+<section class="page" id="existing">
+<div class="head">
+<button class="back" data-home>‹</button>
+<div>
+<h2>Existing loan help</h2>
+<p>Choose what you need help with.</p>
+</div>
+</div>
+<div class="options" id="existingOpts">
+</div>
+<div id="existingAns" style="margin-top:11px">
+</div>
+</section>
+<section class="page" id="other">
+<div class="head">
+<button class="back" data-home>‹</button>
+<div>
+<h2>Ask another question</h2>
+<p>Get a verified answer without an AI call.</p>
+</div>
+</div>
+<div class="options" style="margin-bottom:12px">
+<button class="choice suggestion">What CIBIL score is required?</button>
+<button class="choice suggestion">Can I get a loan with low CIBIL?</button>
+<button class="choice suggestion">How long does approval take?</button>
+<button class="choice suggestion">What interest rate will I get?</button>
+</div>
+<div class="field">
+<label>Your question</label>
+<input id="otherQ" maxlength="180" placeholder="Type a loan-related question">
+</div>
+<div class="error" id="otherErr">
+</div>
+<button class="btn primary wide" id="otherNext">Get answer</button>
+<div id="answerBox" style="display:none;margin-top:12px">
+<div class="info">
+<h3 id="answerTitle">Answer</h3>
+<p id="answerText"></p>
+<div class="metrics" style="margin-top:10px">
+<button class="btn" data-home>Back to menu</button>
+<button class="btn primary" id="answerExpert">Ask representative</button>
+</div>
+</div>
+</div>
+</section>
+<section class="page" id="contact">
+<div class="head">
+<button class="back" data-home>‹</button>
+<div>
+<h2>Contact details</h2>
+<p>Our loan expert can continue on WhatsApp.</p>
+</div>
+</div>
+<div class="field">
+<label>Full name</label>
+<input id="name" autocomplete="name" maxlength="60" placeholder="Enter your name">
+</div>
+<div class="field">
+<label>10-digit mobile number</label>
+<input id="mobile" inputmode="numeric" maxlength="10" placeholder="Enter mobile number">
+</div>
+<h3 class="question">How should our expert contact you?</h3>
+<label class="method">
+<input type="radio" checked>
+<span>WhatsApp</span>
+</label>
+<label class="consent">
+<input id="consent" type="checkbox">
+<span>I agree to be contacted about this enquiry.</span>
+</label>
+<div class="error" id="contactErr">
+</div>
+<button class="btn primary wide" id="review">Review my details</button>
+</section>
+<section class="page" id="summary">
+<div class="head">
+<button class="back" data-go="contact">‹</button>
+<div>
+<h2>What we understood</h2>
+<p>Review before opening WhatsApp.</p>
+</div>
+</div>
+<div class="summary" id="summaryBox">
+</div>
+<p class="fine">Nothing is sent automatically. WhatsApp opens with a prepared message; you tap Send.</p>
+<a class="btn primary wide" style="margin-top:12px;display:grid;place-items:center;text-decoration:none" id="waLink" href="#" target="_blank" rel="noopener noreferrer">Open WhatsApp</a>
+</section>
+</div>
+<footer class="foot">
+<button class="btn" data-a="expert">Talk to a representative</button>
+</footer>
+</main>
+<button class="launcher" id="launcher">BL</button><script>
+
+const WA='917276063476',state={mode:'',loan:'',purpose:'',amount:'',profile:'',income:'',dues:'',knowsCibil:'',score:'',timeline:'',location:'',name:'',mobile:'',question:'',existing:'',emi:null};const nameInput=document.getElementById('name'),mobileInput=document.getElementById('mobile'),resetButton=document.getElementById('reset'),closeButton=document.getElementById('close');
+const loans={'Personal Loan':{i:'P',pur:['Medical expenses','Wedding expenses','Travel','Home renovation','Education expenses','Debt consolidation'],docs:['PAN and Aadhaar','Recent photograph','Last 3 months’ salary slips','Recent bank statements','Employment and address proof']},'Home / Property Loan':{i:'H',pur:['Buy a home','Build a home','Home renovation','Buy a plot','Loan against property'],docs:['Identity and address proof','Salary slips or income proof','Form 16 or ITR documents','Recent bank statements','Property documents and co-applicant KYC, if applicable']},'Business Loan':{i:'B',pur:['Working capital','Business expansion','Buy equipment','Purchase stock','Open a new branch'],docs:['Promoter KYC','Business registration proof','GST or Udyam documents, where applicable','ITR and financial statements','Business bank statements']},'Vehicle Loan':{i:'V',pur:['New car','Used car','Commercial vehicle','Two-wheeler'],docs:['PAN and Aadhaar','Income proof or ITR','Recent bank statements','Vehicle quotation','Existing RC for a used vehicle, where applicable']},'Education Loan':{i:'E',pur:['Undergraduate study','Postgraduate study','Study abroad','Skill development or certification'],docs:['Student and co-applicant KYC','Admission letter','Course fee structure','Academic records','Co-applicant income documents and bank statements']},'Balance Transfer / Top-up':{i:'T',pur:['Reduce interest rate','Reduce EMI','Transfer credit-card dues','Need additional funds'],docs:['KYC documents','Existing loan statement','Repayment track record','Income proof','Recent bank statements']}};
+const amounts=['Below ₹1 lakh','₹1–5 lakh','₹5–10 lakh','₹10–25 lakh','₹25–50 lakh','Above ₹50 lakh'],pages=[...document.querySelectorAll('.page')],view=document.getElementById('view');let selectMode='',steps=[],idx=0,docFlow=false;
+function go(id){pages.forEach(p=>p.classList.toggle('active',p.id===id));view.scrollTop=0}function home(){go('home')}function action(a){if(a==='find')selectLoan('full','Find the right loan','Choose once; the bot remembers it.');if(a==='elig')selectLoan('elig','Check eligibility','Choose a loan to start the quick check.');if(a==='docs')go('documents');if(a==='emi')go('emi-loan');if(a==='existing')go('existing');if(a==='other')go('other');if(a==='expert'){state.mode='expert';go('contact')}}document.addEventListener('click',e=>{let x=e.target.closest('[data-go]');if(x)go(x.dataset.go);if(e.target.closest('[data-home]'))home();x=e.target.closest('[data-a]');if(x)action(x.dataset.a)});
+function selectLoan(mode,title,help){selectMode=mode;selectTitle.textContent=title;selectHelp.textContent=help;selectUser.textContent=title;go('loan-select')}
+function loanBtn(n,d,s){const b=document.createElement('button');b.className='opt';b.innerHTML=`<span class="oi">${d.i}</span><span><b>${n}</b><small>${s}</small></span><span class="arr">›</span>`;return b}
+Object.entries(loans).forEach(([n,d])=>{let b=loanBtn(n,d,'Select this loan');b.onclick=()=>begin(n,selectMode);loanList.appendChild(b);b=loanBtn(n,d,'View checklist');b.onclick=()=>showDocs(n,false);docLoans.appendChild(b);b=loanBtn(n,d,'Calculate estimate');b.onclick=()=>{state.loan=n;emiName.textContent=n;go('emi')};emiLoans.appendChild(b)});
+function fullSteps(){return[
+{k:'purpose',q:`What do you need the ${state.loan} for?`,t:'choices',v:[...loans[state.loan].pur,'Other / Type my answer']},
+{k:'amount',q:'How much funding do you require?',t:'choices',v:[...amounts,'Enter a different amount']},
+{k:'profile',q:'What is your employment or income profile?',t:'choices',v:['Salaried','Self-employed','Business owner','Professional','Other / Type my answer']},
+{k:'income',q:'What is your approximate monthly income?',t:'choices',v:['Below ₹20,000','₹20,000–₹40,000','₹40,000–₹75,000','₹75,000–₹1.5 lakh','Above ₹1.5 lakh','Prefer not to say']},
+{k:'dues',q:'Do you have existing loans or credit-card dues?',t:'choices',v:['Yes','No','Not sure']},
+{k:'knowsCibil',q:'Do you know your current CIBIL score?',t:'choices',v:['Yes','No']},
+{k:'timeline',q:'When do you need the loan?',t:'choices',v:['Immediately','Within a few days','Within a month','Just exploring']},
+{k:'location',q:'Which city do you live or work in?',t:'location'}]}
+function eligSteps(){return[
+{k:'profile',q:'What is your employment or income profile?',t:'choices',v:['Salaried','Self-employed','Business owner','Professional','Other / Type my answer']},
+{k:'income',q:'What is your approximate monthly income?',t:'choices',v:['Below ₹20,000','₹20,000–₹40,000','₹40,000–₹75,000','₹75,000–₹1.5 lakh','Above ₹1.5 lakh','Prefer not to say']},
+{k:'dues',q:'Do you have existing loans or credit-card dues?',t:'choices',v:['Yes','No','Not sure']},
+{k:'knowsCibil',q:'Do you know your current CIBIL score?',t:'choices',v:['Yes','No']},
+{k:'location',q:'Which city do you live or work in?',t:'location'}]}
+function begin(loan,mode){state.loan=loan;state.mode=mode;steps=mode==='full'?fullSteps():eligSteps();idx=0;wTitle.textContent=mode==='full'?'Your loan requirement':'Eligibility check';loanBubble.textContent=loan;render();go('wizard')}
+function custom(v){return /Other \/ Type|different amount|exact score/.test(v)}
+function render(){const s=steps[idx];delete control.dataset.value;stepLabel.textContent=`Step ${idx+1} of ${steps.length}`;bar.style.width=`${(idx+1)/steps.length*100}%`;question.textContent=s.q;wError.textContent='';if(s.t==='choices'){control.innerHTML=`<div class="options">${s.v.map(v=>`<button class="choice" data-v="${v.replace(/"/g,'&quot;')}"><span>${v}</span><span class="arr">›</span></button>`).join('')}</div><div class="custom" id="customBox"><div class="field"><label>Type your answer</label><input id="customInput" maxlength="80" placeholder="Enter your answer"></div></div>`;control.querySelectorAll('.choice').forEach(b=>b.onclick=()=>{control.querySelectorAll('.choice').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');control.dataset.value=b.dataset.v;customBox.classList.toggle('show',custom(b.dataset.v))})}else if(s.t==='location')control.innerHTML='<div class="field"><label>City and PIN code</label><input id="loc" maxlength="60" placeholder="e.g. Pune – 411052"></div>';else control.innerHTML='<div class="info"><h3>CIBIL in short</h3><p>A CIBIL score reflects your credit repayment history. A higher score may improve loan options, but it never guarantees approval.</p></div>';next.textContent=idx===steps.length-1?(state.mode==='full'?'View required documents':'View eligibility summary'):'Continue'}
+function addCibil(){steps=steps.filter(x=>x.k!=='score'&&x.k!=='cibilInfo');const at=steps.findIndex(x=>x.k==='knowsCibil')+1;if(state.knowsCibil==='Yes')steps.splice(at,0,{k:'score',q:'Select your CIBIL score range.',t:'choices',v:['Below 550 — Very Low','550–649 — Needs Improvement','650–699 — Fair','700–749 — Good','750–799 — Very Good','800–900 — Excellent','Enter exact score']});else steps.splice(at,0,{k:'cibilInfo',q:'What is a CIBIL score?',t:'info'})}
+next.onclick=()=>{const s=steps[idx];if(s.t==='choices'){let v=control.dataset.value||'';if(custom(v)){const c=customInput.value.trim();if(!c){wError.textContent='Please type your answer.';return}v=c}if(!v){wError.textContent='Please select an option.';return}state[s.k]=v;if(s.k==='knowsCibil')addCibil()}else if(s.t==='location'){const v=loc.value.trim();if(v.length<5){wError.textContent='Enter city and PIN code.';return}state.location=v}if(idx<steps.length-1){idx++;render();return}state.mode==='full'?showDocs(state.loan,true):eligSummary()};
+wBack.onclick=()=>{if(idx){idx--;render()}else go('loan-select')};
+function showDocs(loan,flow){state.loan=loan;docFlow=flow;docTitle.textContent=`${loan} documents`;docList.innerHTML=loans[loan].docs.map(x=>`<li>${x}</li>`).join('');docNext.textContent=flow?'Continue to contact details':'Talk to a representative';go('doc-detail')}
+docBack.onclick=()=>docFlow?go('wizard'):go('documents');docNext.onclick=()=>{state.mode=docFlow?'full':'documents';go('contact')};
+const esc=value=>String(value).replace(/[&<>'"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]));
+function rows(){const r=[['Name',state.name],['Mobile',state.mobile],['Contact by','WhatsApp']];[['Loan',state.loan],['Purpose',state.purpose],['Funding',state.amount],['Income profile',state.profile],['Monthly income',state.income],['Existing dues',state.dues],['Knows CIBIL',state.knowsCibil],['CIBIL score',state.score],['Needed',state.timeline],['City / PIN',state.location],['Question',state.question],['Existing-loan help',state.existing]].forEach(x=>{if(x[1])r.push(x)});return r}
+function renderSummary(title='What we understood'){summaryBox.innerHTML=`<h3>${esc(title)}</h3>${rows().map(([k,v])=>`<div class="row"><span>${esc(k)}</span><b>${esc(v)}</b></div>`).join('')}`;prepareWhatsApp()}
+function eligSummary(){const data=[['Loan',state.loan],['Income profile',state.profile],['Monthly income',state.income],['Existing dues',state.dues],['CIBIL',state.score||state.knowsCibil],['Location',state.location]];summaryBox.innerHTML=`<h3>Basic eligibility profile</h3>${data.map(([k,v])=>`<div class="row"><span>${esc(k)}</span><b>${esc(v||'Not provided')}</b></div>`).join('')}<p class="fine">This is only a basic indication. Final eligibility depends on lender rules and document verification.</p>`;state.mode='elig';prepareWhatsApp();go('summary')}
+const help={'Balance transfer':'Move an eligible existing loan to another lender, usually to seek a lower rate or better terms.','Top-up loan':'Request additional eligible funding on an existing loan with a satisfactory repayment history.','Credit-card dues':'An expert can review possible consolidation options. Never share card numbers, CVV or OTP.','Reduce my EMI':'Possible routes include balance transfer, longer tenure or restructuring, subject to lender assessment.'};
+Object.entries(help).forEach(([n,a])=>{const b=document.createElement('button');b.className='opt';b.innerHTML=`<span class="oi">↻</span><span><b>${n}</b></span><span class="arr">›</span>`;b.onclick=()=>{state.existing=n;existingAns.innerHTML=`<div class="info"><h3>${n}</h3><p>${a}</p><button class="btn primary wide" style="margin-top:12px" data-a="expert">Ask an expert</button></div>`};existingOpts.appendChild(b)});
+const faq=[
+{test:/what loans|loan types|which loans|loans do you offer/i,answer:'We assist with Personal, Home/Property, Business, Vehicle and Education Loans, along with eligible balance-transfer and top-up requirements.'},
+{test:/minimum salary|salary.*personal|income.*personal/i,answer:'The minimum income requirement differs by lender, employer, city and applicant profile. Some lenders may consider income starting around ₹20,000 per month, but this is not guaranteed.'},
+{test:/cibil.*required|required.*cibil|good cibil|cibil range/i,answer:'A score of 750 or above is generally considered strong. However, income, existing EMIs, repayment history, documents and lender rules are also considered.'},
+{test:/low cibil|poor cibil|bad cibil/i,answer:'Options may be limited and terms may be stricter, but a low score does not automatically mean rejection. A loan expert can review the complete profile.'},
+{test:/interest rate|lowest rate|rate of interest/i,answer:'Interest rates depend on the loan type, lender, income, credit profile, amount and tenure. A final rate cannot be confirmed before lender assessment.'},
+{test:/how long|approval time|processing time|disbursal time/i,answer:'Processing time differs by lender and depends on document completeness and verification. An expert can give a better estimate after reviewing your requirement.'},
+{test:/consultation fee|do you charge|your fees/i,answer:'Service or consultation charges should be confirmed with a B-Tech Loan Wala representative before you proceed.'},
+{test:/without salary slip|no salary slip/i,answer:'It depends on your profile and lender. Self-employed applicants may use ITRs, financial statements and bank statements instead of salary slips.'},
+{test:/student.*loan|loan.*student/i,answer:'Students may apply for an education loan, generally with a parent, guardian or eligible co-applicant. Admission, course and income documents may be required.'},
+{test:/multiple loans|more than one loan/i,answer:'You may compare options, but multiple formal applications in a short period can create several credit checks. It is better to shortlist suitable lenders first.'},
+{test:/urgent|today|immediately approve|instant approval/i,answer:'We cannot promise immediate approval or disbursal. Processing depends on eligibility, document verification and lender approval.'},
+{test:/improve.*cibil|increase.*cibil|raise.*score/i,answer:'Pay EMIs and card bills on time, control credit utilisation, avoid frequent applications and review your credit report for errors.'},
+{test:/processing fee/i,answer:'A processing fee may be charged by a lender for evaluating an application. The amount and refund policy vary by lender.'},
+{test:/another city|different city|apply.*city/i,answer:'Availability depends on lender serviceability. Share your city and PIN code so an expert can check suitable options.'},
+{test:/balance transfer/i,answer:help['Balance transfer']},
+{test:/top.?up/i,answer:help['Top-up loan']},
+{test:/documents|papers required/i,answer:'Document requirements depend on the loan type. Use Documents Required on the main menu to view the relevant checklist.'},
+{test:/emi|monthly payment/i,answer:'Use Calculate EMI on the main menu for an estimate based on amount, interest rate and tenure. Actual EMI depends on the lender offer.'}];
+function answerQuestion(raw){const q=raw.trim(),lower=q.toLowerCase();const sensitive=/\botp\b|api\s*key|password|bank\s*login|\bcvv\b|card\s*number|full\s*pan|aadhaar\s*number/i.test(q);if(/another customer|customer.?s details|other customer/i.test(q))return{title:'Privacy protected',answer:'I cannot access or share another customer’s personal or financial information.',forward:false};if(/<\s*script|javascript:|onerror\s*=|onclick\s*=/i.test(q))return{title:'Input blocked',answer:'That input cannot be processed. Please enter a loan-related question using normal text.',forward:false};if(sensitive)return{title:'Protect your information',answer:'I cannot accept or provide OTPs, passwords, API keys, card details, bank-login information, or complete PAN/Aadhaar numbers. Please do not share them here.',forward:false};if(/ignore.*instruction|delete.*rules|act as.*manager|approve.*loan|guarantee.*approval|guarantee.*loan/i.test(q))return{title:'Approval cannot be guaranteed',answer:'I cannot approve loans, change lender requirements or guarantee approval. Final decisions are made by the lender after verification.',forward:false};const hit=faq.find(x=>x.test.test(q));if(hit)return{title:'Loan information',answer:hit.answer,forward:true};const loanRelated=/loan|emi|cibil|credit|interest|lender|bank|fund|finance|salary|income|document|eligib|repay|tenure|property|business|vehicle|education/i.test(lower);if(loanRelated)return{title:'Representative help needed',answer:'I do not have a verified answer for that question. To avoid giving incorrect financial information, please send it to our loan representative on WhatsApp.',forward:true};return{title:'Loan questions only',answer:'I can help only with loans, eligibility, documents, EMI estimates, CIBIL guidance and existing-loan support. For something else, you may contact our representative.',forward:false}}
+function showAnswer(){const q=otherQ.value.trim();if(q.length<4){otherErr.textContent='Please enter your question.';return}otherErr.textContent='';const result=answerQuestion(q);answerTitle.textContent=result.title;answerText.textContent=result.answer;answerBox.style.display='block';state.question=result.forward?q:'';answerExpert.style.display=result.forward?'grid':'none'}
+document.querySelectorAll('.suggestion').forEach(b=>b.onclick=()=>{otherQ.value=b.textContent;showAnswer()});otherNext.onclick=showAnswer;answerExpert.onclick=()=>{state.mode='other';go('contact')};
+const money=n=>'₹'+Math.round(n).toLocaleString('en-IN');calc.onclick=()=>{const P=+emiAmount.value,r=+emiRate.value/1200,n=+emiYears.value*12;if(!(P>=10000&&r>0&&n>0)){emiError.textContent='Enter valid values.';return}emiError.textContent='';const e=P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1),t=e*n;state.emi={monthly:Math.round(e),rate:+emiRate.value,years:+emiYears.value};emiOut.innerHTML=`<div class="summary"><p>Estimated monthly EMI</p><span class="big">${money(e)}</span><div class="metrics"><div class="metric"><small>Total interest</small><b>${money(t-P)}</b></div><div class="metric"><small>Total repayment</small><b>${money(t)}</b></div></div><p class="fine">Estimate only. Actual EMI depends on the lender.</p></div>`};
+function prepareWhatsApp(){if(!state.name){waLink.href='#';return}const l=['Hello B-Tech Loan Wala,','','New website loan enquiry:'];rows().forEach(([k,v])=>l.push(`${k}: ${v}`));if(state.emi)l.push(`EMI estimate: ${money(state.emi.monthly)}/month`);waLink.href=`https://wa.me/${WA}?text=${encodeURIComponent(l.join('\n'))}`}
+review.onclick=()=>{const n=nameInput.value.trim(),m=mobileInput.value.replace(/\D/g,'');if(n.length<2){contactErr.textContent='Enter your full name.';return}if(!/^[6-9]\d{9}$/.test(m)){contactErr.textContent='Enter a valid 10-digit mobile number.';return}if(!consent.checked){contactErr.textContent='Please provide contact consent.';return}state.name=n;state.mobile=m;contactErr.textContent='';renderSummary();go('summary')};
+waLink.onclick=e=>{if(!state.name){e.preventDefault();go('contact')}};
+resetButton.onclick=()=>{Object.keys(state).forEach(k=>state[k]=k==='emi'?null:'');idx=0;home()};closeButton.onclick=()=>{shell.style.display='none';launcher.classList.add('show')};launcher.onclick=()=>{shell.style.display='grid';launcher.classList.remove('show')};
+</script></body></html>

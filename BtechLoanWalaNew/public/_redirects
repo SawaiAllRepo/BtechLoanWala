@@ -1,0 +1,5 @@
+# Netlify SPA fallback
+# Serve index.html for every client-side route so React Router can
+# handle URLs like /contact-us, /loans/personal, etc. when accessed
+# directly. Return HTTP 200 so our pages are crawlable by search engines.
+/*    /index.html   200
